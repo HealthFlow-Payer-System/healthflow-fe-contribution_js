@@ -29,23 +29,37 @@ class ContributionsPage extends Component {
     );
   };
 
+    constructor(props) {
+        super(props);
+        let defaultFilters = {};
+        this.state = {
+          defaultFilters,
+        };
+      }
+
   componentDidMount = () => {
     const moduleName = "contribution";
     const { module } = this.props;
     if (module !== moduleName) this.props.clearCurrentPaginationPage();
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.page}>
-        <ContributionSearcher
-          cacheFiltersKey="contributionsPageFiltersCache"
-          onDoubleClick={this.onDoubleClick}
-        />
-      </div>
-    );
-  }
+    onDoubleClick = (c, newTab = false) => {
+        historyPush(this.props.modulesManager, this.props.history, "contribution.contributionOverview", [c.uuid], newTab)
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className={classes.page}>
+                <ContributionSearcher
+                    cacheFiltersKey="contributionsPageFiltersCache"
+                    onDoubleClick={this.onDoubleClick}
+                    defaultFilters = {this.state.defaultFilters}
+                />
+            </div>
+        )
+    }
+
 }
 
 const mapStateToProps = (state) => ({
