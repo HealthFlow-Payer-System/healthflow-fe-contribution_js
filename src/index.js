@@ -106,7 +106,8 @@ const DEFAULT_CONFIG = {
       text: <FormattedMessage module="contribution" id="menu.contributions" />,
       icon: <MonetizationOn />,
       route: "/" + ROUTE_CONTRIBUTION_CONTRIBUTIONS,
-      filter: rights => rights.includes(RIGHT_CONTRIBUTION)
+      filter: rights => rights.includes(RIGHT_CONTRIBUTION),
+      id: 'insuree.contribution'
     }
   ],
   "insuree.FamilyOverview.panels": [PoliciesPremiumsOverview],
