@@ -78,5 +78,9 @@
     "contribution.familySummaries.dob": "Head Birth Date",
     "contribution.warning.header": "WARNING",
     "contribution.warning.paid.description": "The policy is already paid.",
-    "contribution.warning.paid.exceedsPolicyValue": "Sum of contributions exceeds policy value. Saving not allowed."
+    "contribution.warning.paid.exceedsPolicyValue": "Sum of contributions exceeds policy value. Saving not allowed.",
+    "contribution.gql_query_premiums_perms": "Contribution | Query Premiums",
+    "contribution.gql_mutation_create_premiums_perms": "Contribution | Mutation Create Premiums",
+    "contribution.gql_mutation_update_premiums_perms": "Contribution | Mutation Update Premiums",
+    "contribution.gql_mutation_delete_premiums_perms": "Contribution | Mutation Delete Premiums"
 }
