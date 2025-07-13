@@ -3,9 +3,9 @@ import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { withTheme, withStyles } from "@material-ui/core/styles";
-import ReplayIcon from "@material-ui/icons/Replay";
-import People from "@material-ui/icons/People";
+import { withTheme, withStyles } from "@mui/material/styles";
+import ReplayIcon from "@mui/icons-material/Replay";
+import People from "@mui/icons-material/People";
 
 import {
   formatMessageWithValues,

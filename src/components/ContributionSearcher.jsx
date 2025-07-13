@@ -3,10 +3,10 @@ import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { injectIntl } from 'react-intl';
-import {  IconButton, Tooltip } from "@material-ui/core";
+import {  IconButton, Tooltip } from "@mui/material";
 import {
    Tab as TabIcon, Delete as DeleteIcon
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import ContributionFilter from './ContributionFilter';
 import {
     withModulesManager, formatMessageWithValues, formatDateFromISO, formatMessage,

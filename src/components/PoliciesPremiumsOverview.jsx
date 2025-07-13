@@ -4,13 +4,13 @@ import { bindActionCreators } from "redux";
 import { injectIntl } from 'react-intl';
 import _ from "lodash";
 
-import { Paper, IconButton, Grid, Divider, Typography, Tooltip } from "@material-ui/core";
-import { withTheme, withStyles } from "@material-ui/core/styles";
-import ReplayIcon from "@material-ui/icons/Replay"
+import { Paper, IconButton, Grid, Divider, Typography, Tooltip } from "@mui/material";
+import { withTheme, withStyles } from "@mui/material/styles";
+import ReplayIcon from "@mui/icons-material/Replay"
 import {
     Add as AddIcon,
     Delete as DeleteIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 
 import {
     formatMessage,
