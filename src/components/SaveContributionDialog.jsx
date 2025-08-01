@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { injectIntl } from 'react-intl';
-import { withTheme, withStyles } from "@mui/material/styles";
-
-const styles = theme => ({
-    primaryButton: theme.dialog.primaryButton,
-    secondaryButton: theme.dialog.secondaryButton,
-})
+import { useTheme, styled } from "@mui/material/styles";
 
 import {
     Button,
@@ -18,8 +13,13 @@ import {
 
 import { FormattedMessage } from "@openimis/fe-core";
 
+const StyledButton = styled(Button)(({ theme }) => ({
+  '& .primaryButton': theme.dialog.primaryButton,
+  '& .secondaryButton': theme.dialog.secondaryButton,
+}));
+
 const SaveContributionDialog = ({
-    classes, contribution, onCancel, onConfirm, installmentsNumber
+    contribution, onCancel, onConfirm, installmentsNumber
 }) => {
     if (!contribution.policy || !contribution.policy.value) return null;
     const [step, setStep] = useState(1);
@@ -93,9 +93,9 @@ const SaveContributionDialog = ({
 
                 {
                     amount === policyValue && (
-                        <Button onClick={e => onConfirm()} className={classes.primaryButton} autoFocus>
+                        <StyledButton onClick={e => onConfirm()} className="primaryButton" autoFocus>
                             <FormattedMessage module="contribution" id="saveContributionDialog.ok.button" />
-                        </Button>
+                        </StyledButton>
                     )
                 }
 
@@ -104,20 +104,20 @@ const SaveContributionDialog = ({
                         <>
                             {
                                 step === 1 && (
-                                    <Button onClick={e => setStep(2)} className={classes.primaryButton} autoFocus>
+                                    <StyledButton onClick={e => setStep(2)} className="primaryButton" autoFocus>
                                         <FormattedMessage module="contribution" id="saveContributionDialog.ok.button" />
-                                    </Button>
+                                    </StyledButton>
                                 )
                             }
                             {
                                 step === 2 && (
                                     <>
-                                        <Button onClick={e => onConfirm('ENFORCE')} className={classes.primaryButton} autoFocus>
+                                        <StyledButton onClick={e => onConfirm('ENFORCE')} className="primaryButton" autoFocus>
                                             <FormattedMessage module="contribution" id="saveContributionDialog.yes.button" />
-                                        </Button>
-                                        <Button onClick={e => onConfirm('WAIT')} className={classes.primaryButton} autoFocus>
+                                        </StyledButton>
+                                        <StyledButton onClick={e => onConfirm('WAIT')} className="primaryButton" autoFocus>
                                             <FormattedMessage module="contribution" id="saveContributionDialog.no.button" />
-                                        </Button>
+                                        </StyledButton>
                                     </>
                                 )
                             }
@@ -126,9 +126,9 @@ const SaveContributionDialog = ({
                 }
                 {
                     step === 1 && (
-                        <Button onClick={onCancel} className={classes.secondaryButton} >
+                        <StyledButton onClick={onCancel} className="secondaryButton" >
                             <FormattedMessage module="core" id="cancel" />
-                        </Button>
+                        </StyledButton>
                     )
                 }
             </DialogActions>
@@ -136,4 +136,4 @@ const SaveContributionDialog = ({
     );
 }
 
-export default injectIntl(withTheme(withStyles(styles)(SaveContributionDialog)));
+export default injectIntl(SaveContributionDialog);

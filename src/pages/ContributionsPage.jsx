@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 
-import { withTheme, withStyles } from "@mui/material/styles";
+import { useTheme, styled } from "@mui/material/styles";
 
 import {
   historyPush,
@@ -13,10 +13,10 @@ import {
 } from "@openimis/fe-core";
 import ContributionSearcher from "../components/ContributionSearcher";
 
-const styles = (theme) => ({
-  page: theme.page,
-  fab: theme.fab,
-});
+const StyledDiv = styled("div")(({ theme }) => ({
+  ...theme.page,
+  '& .fab': theme.fab,
+}));
 
 class ContributionsPage extends Component {
   onDoubleClick = (c, newTab = false) => {
@@ -48,15 +48,14 @@ class ContributionsPage extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         return (
-            <div className={classes.page}>
+            <StyledDiv className="page">
                 <ContributionSearcher
                     cacheFiltersKey="contributionsPageFiltersCache"
                     onDoubleClick={this.onDoubleClick}
                     defaultFilters = {this.state.defaultFilters}
                 />
-            </div>
+            </StyledDiv>
         )
     }
 
@@ -79,7 +78,7 @@ export default injectIntl(
       connect(
         mapStateToProps,
         mapDispatchToProps
-      )(withTheme(withStyles(styles)(ContributionsPage)))
+      )(ContributionsPage)
     )
   )
 );

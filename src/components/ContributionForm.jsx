@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { withTheme, withStyles } from "@mui/material/styles";
+import { useTheme, styled } from "@mui/material/styles";
 import ReplayIcon from "@mui/icons-material/Replay";
 import People from "@mui/icons-material/People";
 
@@ -31,9 +30,9 @@ import { INSUREE_FAMILY_ROUTE_REF, RIGHT_CONTRIBUTION } from "../constants";
 import ContributionMasterPanel from "./ContributionMasterPanel";
 import SaveContributionDialog from "./SaveContributionDialog";
 
-const styles = (theme) => ({
-  lockedPage: theme.page.locked,
-});
+const StyledDiv = styled("div")(({ theme }) => ({
+  '&.lockedPage': theme.page.locked,
+}));
 
 const CONTRIBUTION_OVERVIEW_MUTATIONS_KEY =
   "contribution.ContributionOverview.mutations";
@@ -98,19 +97,18 @@ class ContributionForm extends Component {
     } else if (prevProps.submittingMutation && !this.props.submittingMutation) {
       this.props.journalize(this.props.mutation);
       this.setState((state, props) => ({
-        contribution: {
-          ...state.contribution,
-          clientMutationId: props.mutation.clientMutationId,
-        },
+        reset: state.reset + 1,
+        update: false,
+        saveContribution: false,
       }));
-    } else if (
+    }
+    if (
       prevProps.confirmed !== this.props.confirmed &&
       !!this.props.confirmed &&
       !!this.state.confirmedAction
     ) {
       this.state.confirmedAction();
     }
-
     if (!prevProps.policySummary && !!this.props.policySummary) {
       this.setState((prevState) => ({
         contribution: {
@@ -119,13 +117,9 @@ class ContributionForm extends Component {
         },
       }));
     }
-
-    if (
-      prevState.contribution !== this.state.contribution
-    ) {
+    if (prevState.contribution !== this.state.contribution) {
       const { contribution } = this.state;
       const maxInstallments = contribution?.policy?.product?.maxInstallments;
-
       if (maxInstallments === 0 && contribution.amount !== 0) {
         this.setState((prevState) => ({
           contribution: {
@@ -134,7 +128,6 @@ class ContributionForm extends Component {
           },
         }));
       }
-
       if (
         maxInstallments === 1 &&
         contribution.amount !== contribution.policy?.value
@@ -146,7 +139,6 @@ class ContributionForm extends Component {
           },
         }));
       }
-
       if (
         maxInstallments > 1 &&
         (prevState.contribution.policy?.uuid !== contribution.policy?.uuid ||
@@ -158,7 +150,6 @@ class ContributionForm extends Component {
           `policyUuids: ["${contribution.policy.uuid}"]`,
         ]).then((res) => {
           const { totalCount } = res.payload.data.premiumsByPolicies;
-
           if (totalCount === maxInstallments - 1) {
             const amount = contribution.policy?.value - contribution.policy?.sumPremiums;
             this.setState((prevState) => ({
@@ -196,7 +187,6 @@ class ContributionForm extends Component {
       (contribution?.id && contribution?.policy?.product?.maxInstallments === 1)
     )
       return false;
-
     if (
       !contribution ||
       (contribution &&
@@ -251,10 +241,7 @@ class ContributionForm extends Component {
       const { modulesManager, history } = this.props;
       const { contribution } = this.state;
       const familyUuid = contribution?.policy?.family?.uuid;
-
-      historyPush(modulesManager, history, INSUREE_FAMILY_ROUTE_REF, [
-        familyUuid,
-      ]);
+      historyPush(modulesManager, history, INSUREE_FAMILY_ROUTE_REF, [familyUuid]);
     } catch (error) {
       console.error(`[CONTRIBUTION_FORM]: ${error}`);
     }
@@ -263,7 +250,6 @@ class ContributionForm extends Component {
   render() {
     const {
       modulesManager,
-      classes,
       state,
       rights,
       contribution_uuid,
@@ -276,8 +262,8 @@ class ContributionForm extends Component {
       back,
     } = this.props;
     const { contribution, saveContribution, newContribution, reset, update } =
-    this.state;
-    
+      this.state;
+
     if (!rights.includes(RIGHT_CONTRIBUTION)) return null;
     let runningMutation = !!contribution && !!contribution.clientMutationId;
     let contributedMutations = modulesManager.getContribs(
@@ -297,14 +283,12 @@ class ContributionForm extends Component {
         icon: <People />,
         tooltip: formatMessage(this.props.intl, "contribution", "redirectToFamily.tooltip"),
         disabled: !contribution?.policy?.family?.uuid,
-      }
+      },
     ];
     return (
-      <div
+      <StyledDiv
         className={
-          !!runningMutation || contribution?.validityTo
-            ? classes.lockedPage
-            : null
+          !!runningMutation || contribution?.validityTo ? "lockedPage" : undefined
         }
       >
         <Helmet
@@ -357,7 +341,7 @@ class ContributionForm extends Component {
             openDirty={save}
           />
         )}
-      </div>
+      </StyledDiv>
     );
   }
 }
@@ -402,6 +386,6 @@ export default withHistory(
     connect(
       mapStateToProps,
       mapDispatchToProps
-    )(injectIntl(withTheme(withStyles(styles)(ContributionForm))))
+    )(injectIntl(ContributionForm))
   )
 );

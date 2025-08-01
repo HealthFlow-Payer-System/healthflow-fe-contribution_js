@@ -3,7 +3,7 @@ import { injectIntl } from "react-intl";
 import _debounce from "lodash/debounce";
 
 import { Grid, Checkbox, FormControlLabel } from "@mui/material";
-import { withTheme, withStyles } from "@mui/material/styles";
+import { useTheme, styled } from "@mui/material/styles";
 
 import {
   withModulesManager,
@@ -15,17 +15,17 @@ import {
   decodeId,
 } from "@openimis/fe-core";
 
-const styles = (theme) => ({
-  dialogTitle: theme.dialog.title,
-  dialogContent: theme.dialog.content,
-  form: {
+const StyledSection = styled("section")(({ theme }) => ({
+  '& .form': {
     padding: 0,
   },
-  item: {
+  '& .item': {
     padding: theme.spacing(1),
   },
-  paperDivider: theme.paper.divider,
-});
+  '& .dialogTitle': theme.dialog.title,
+  '& .dialogContent': theme.dialog.content,
+  '& .paperDivider': theme.paper.divider,
+}));
 
 class ContributionFilter extends Component {
   debouncedOnChangeFilter = _debounce(
@@ -55,9 +55,9 @@ class ContributionFilter extends Component {
   };
 
   render() {
-    const { classes, filters, onChangeFilters, intl } = this.props;
+    const { filters, onChangeFilters, intl } = this.props;
     return (
-      <section className={classes.form}>
+      <StyledSection className="form">
         <Grid container>
           <ControlledField
             module="contribution"
@@ -80,7 +80,7 @@ class ContributionFilter extends Component {
             field={
               <Grid item xs={4}>
                 <Grid container>
-                  <Grid item xs={6} className={classes.item}>
+                  <Grid item xs={6} className="item">
                     <PublishedComponent
                       pubRef="core.DatePicker"
                       value={this._filterValue("payDateFrom")}
@@ -97,7 +97,7 @@ class ContributionFilter extends Component {
                       }
                     />
                   </Grid>
-                  <Grid item xs={6} className={classes.item}>
+                  <Grid item xs={6} className="item">
                     <PublishedComponent
                       pubRef="core.DatePicker"
                       value={this._filterValue("payDateTo")}
@@ -122,7 +122,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.payer"
             field={
-              <Grid item xs={4} className={classes.item}>
+              <Grid item xs={4} className="item">
                 <PublishedComponent
                   pubRef="payer.PayerPicker"
                   withNull={true}
@@ -146,7 +146,7 @@ class ContributionFilter extends Component {
               id="ContributionFilter.amountUnder"
               key={a}
               field={
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} className="item">
                   <AmountInput
                     module="contribution"
                     label={`contribution.${a}`}
@@ -171,7 +171,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.payType"
             field={
-              <Grid item xs={4} className={classes.item}>
+              <Grid item xs={4} className="item">
                 <PublishedComponent
                   pubRef="contribution.PremiumPaymentTypePicker"
                   withNull={true}
@@ -193,7 +193,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="contribution.category"
             field={
-              <Grid item xs={4} className={classes.item}>
+              <Grid item xs={4} className="item">
                 <PublishedComponent
                   pubRef="contribution.PremiumCategoryPicker"
                   withNull={true}
@@ -215,7 +215,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.receipt"
             field={
-              <Grid item xs={4} className={classes.item}>
+              <Grid item xs={4} className="item">
                 <TextInput
                   module="contribution"
                   label="contribution.receipt"
@@ -241,7 +241,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.showHistory"
             field={
-              <Grid item xs={2} className={classes.item}>
+              <Grid item xs={2} className="item">
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -261,11 +261,11 @@ class ContributionFilter extends Component {
             }
           />
         </Grid>
-      </section>
+      </StyledSection>
     );
   }
 }
 
 export default withModulesManager(
-  injectIntl(withTheme(withStyles(styles)(ContributionFilter)))
+  injectIntl(ContributionFilter)
 );

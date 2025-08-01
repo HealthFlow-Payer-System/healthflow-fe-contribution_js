@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from 'react-intl';
-import { withTheme, withStyles } from "@mui/material/styles";
-
-const styles = theme => ({
-    primaryButton: theme.dialog.primaryButton,
-    secondaryButton: theme.dialog.secondaryButton,
-})
+import { useTheme, styled } from "@mui/material/styles";
 
 import {
     Button,
@@ -18,11 +13,15 @@ import {
 
 import { FormattedMessage } from "@openimis/fe-core";
 
+const StyledButton = styled(Button)(({ theme }) => ({
+  '& .primaryButton': theme.dialog.primaryButton,
+  '& .secondaryButton': theme.dialog.secondaryButton,
+}));
 
 class DeleteContributionDialog extends Component {
 
     render() {
-        const { classes, contribution, onCancel, onConfirm } = this.props;
+        const { contribution, onCancel, onConfirm } = this.props;
         return (
             <Dialog
                 open={!!contribution}
@@ -43,16 +42,16 @@ class DeleteContributionDialog extends Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={e => onConfirm()} className={classes.primaryButton} autoFocus>
+                    <StyledButton onClick={e => onConfirm()} className="primaryButton" autoFocus>
                         <FormattedMessage module="contribution" id="deleteContributionDialog.yes.button" />
-                    </Button>
-                    <Button onClick={onCancel} className={classes.secondaryButton} >
+                    </StyledButton>
+                    <StyledButton onClick={onCancel} className="secondaryButton" >
                         <FormattedMessage module="core" id="cancel"/>
-                    </Button>
+                    </StyledButton>
                 </DialogActions>
             </Dialog>
         )
     }
 }
 
-export default injectIntl(withTheme(withStyles(styles)(DeleteContributionDialog)));
+export default injectIntl(DeleteContributionDialog);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withTheme, withStyles } from "@mui/material/styles";
+import { useTheme, styled } from "@mui/material/styles";
 import {
     formatMessageWithValues, withModulesManager, withHistory,
 } from "@openimis/fe-core";
@@ -10,9 +10,9 @@ import ContributionForm from "../components/ContributionForm";
 import { createContribution, updateContribution } from "../actions";
 import { RIGHT_CONTRIBUTION_EDIT } from "../constants";
 
-const styles = theme => ({
-    page: theme.page,
-});
+const StyledDiv = styled("div")(({ theme }) => ({
+  ...theme.page,
+}));
 
 class ContributionPage extends Component {
 
@@ -43,11 +43,11 @@ class ContributionPage extends Component {
     }
 
     render() {
-        const { classes, rights, contribution_uuid,policy_uuid, overview } = this.props;
+        const { rights, contribution_uuid,policy_uuid, overview } = this.props;
         if (!rights.includes(RIGHT_CONTRIBUTION_EDIT)) return null;
 
         return (
-            <div className={classes.page}>
+            <StyledDiv className="page">
                 <ContributionForm
                     overview={overview}
                     contribution_uuid={contribution_uuid}
@@ -57,7 +57,7 @@ class ContributionPage extends Component {
                     }}
                     save={rights.includes(RIGHT_CONTRIBUTION_EDIT) ? this.save : null}
                 />
-            </div>
+            </StyledDiv>
         )
     }
 }
@@ -73,5 +73,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default withHistory(withModulesManager(connect(mapStateToProps, mapDispatchToProps)(
-    injectIntl(withTheme(withStyles(styles)(ContributionPage))
-    ))));
+    injectIntl(ContributionPage)
+    )));
