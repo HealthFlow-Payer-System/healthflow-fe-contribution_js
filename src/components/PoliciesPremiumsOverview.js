@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { injectIntl } from 'react-intl';
 import _ from "lodash";
 
-import { Paper, IconButton, Grid, Divider, Typography, Tooltip } from "@material-ui/core";
+import { Paper, Button, Grid, Divider, Typography, Tooltip } from "@material-ui/core";
 import { withTheme, withStyles } from "@material-ui/core/styles";
 import ReplayIcon from "@material-ui/icons/Replay"
 import {
@@ -204,7 +204,9 @@ class PoliciesPremiumsOverview extends PagedDataHandler {
     deletePremiumAction = (i) =>
         !!i.validityTo || !!i.clientMutationId ? null :
             <Tooltip title={formatMessage(this.props.intl, "contribution", "deletePremium.tooltip")}>
-                <IconButton onClick={() => this.confirmDelete(i)}><DeleteIcon /></IconButton>
+                <Button onClick={() => this.confirmDelete(i)} startIcon={<DeleteIcon />}>
+                    {formatMessage(this.props.intl, "contribution", "deletePremium.buttonText")}
+                </Button>
             </Tooltip>
 
     itemFormatters = () => {
@@ -282,14 +284,18 @@ class PoliciesPremiumsOverview extends PagedDataHandler {
         const canAdd = rights.includes(RIGHT_CONTRIBUTION_ADD);
         let actions = [
             {
-                button: <IconButton onClick={this.query}><ReplayIcon /></IconButton>,
+                button: <Button onClick={this.query} startIcon={<ReplayIcon />}>
+                    {formatMessage(intl, "contribution", "reload.tooltip")}
+                </Button>,
                 tooltip: formatMessage(intl, "contribution", "reload.tooltip")
             }
         ];
         if (!!!readOnly && canAdd) {
             actions.push(
                 {
-                    button: <IconButton className={!policy ? classes.disabled : ""} onClick={!policy ? null : this.checkNewPremium}><AddIcon /></IconButton>,
+                    button: <Button className={!policy ? classes.disabled : ""} onClick={!policy ? null : this.checkNewPremium} startIcon={<AddIcon />}>
+                        {formatMessage(intl, "contribution", "addNewPremium.buttonText")}
+                    </Button>,
                     tooltip: !policy ?
                         formatMessage(intl, "contribution", "addNewPremium.tooltip.selectPolicy") :
                         formatMessage(intl, "contribution", "addNewPremium.tooltip")

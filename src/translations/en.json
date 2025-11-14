@@ -1,4 +1,7 @@
 {
+    "addNewPremium.buttonText": "New contribution",
+    "contribution.openNewTab.buttonText": "Open",
+    "contribution.deletePremium.buttonText": "Delete",
     "contribution.addNewPremium.tooltip": "Add new contribution",
     "contribution.reload.tooltip": "Reload",
     "contribution.addNewPremium.tooltip.selectPolicy": "Please select a policy to add a contribution",
