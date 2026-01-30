@@ -21,4 +21,6 @@ const mapStateToProps = (state, props) => ({
     contribution_uuid: props.match.params.contribution_uuid,
 })
 
+export { ContributionOverviewPage };
+
 export default withHistory(withModulesManager(connect(mapStateToProps)(ContributionOverviewPage)));

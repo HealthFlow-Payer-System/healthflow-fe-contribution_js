@@ -54,4 +54,5 @@ class DeleteContributionDialog extends Component {
     }
 }
 
+export { StyledButton };
 export default injectIntl(DeleteContributionDialog);

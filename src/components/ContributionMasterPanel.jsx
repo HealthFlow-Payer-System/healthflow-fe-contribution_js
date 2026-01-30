@@ -56,7 +56,7 @@ class ContributionMasterPanel extends FormPanel {
             'contribution',
             'warning.paid.exceedsPolicyValue'
           )}
-          xs={12}
+          size={12}
         />
       );
     }
@@ -70,7 +70,7 @@ class ContributionMasterPanel extends FormPanel {
             'contribution',
             'warning.paid.description'
           )}
-          xs={12}
+          size={12}
         />
       );
     }
@@ -100,7 +100,7 @@ class ContributionMasterPanel extends FormPanel {
           {!!edited && !!edited.policy && !!edited.policy.value && (
             <>
               {this.renderWarning()}
-              <Grid item xs={3} className="item">
+              <Grid size={3} className="item">
                 <TextInput
                   module='contribution'
                   label='contribution.policy.name'
@@ -110,7 +110,7 @@ class ContributionMasterPanel extends FormPanel {
                   }
                 />
               </Grid>
-              <Grid item xs={3} className="item">
+              <Grid size={3} className="item">
                 <AmountInput
                   module='contribution'
                   label='contribution.policy.value'
@@ -119,7 +119,7 @@ class ContributionMasterPanel extends FormPanel {
                   value={edited.policy.value || ''}
                 />
               </Grid>
-              <Grid item xs={3} className="item">
+              <Grid size={3} className="item">
                 <PublishedComponent
                   pubRef='core.DatePicker'
                   value={edited.policy.startDate || ''}
@@ -128,7 +128,7 @@ class ContributionMasterPanel extends FormPanel {
                   readOnly={true}
                 />
               </Grid>
-              <Grid item xs={3} className="item">
+              <Grid size={3} className="item">
                 <PublishedComponent
                   pubRef='core.DatePicker'
                   value={edited.policy.expiryDate || ''}
@@ -139,7 +139,7 @@ class ContributionMasterPanel extends FormPanel {
               </Grid>
               {edited.policy?.family?.uuid && (
                 <>
-                  <Grid item xs={3} className="item">
+                  <Grid size={3} className="item">
                     <TextInput
                       module='contribution'
                       label='contribution.familySummaries.insuranceNo'
@@ -147,7 +147,7 @@ class ContributionMasterPanel extends FormPanel {
                       value={edited.policy.family?.headInsuree?.chfId}
                     />
                   </Grid>
-                  <Grid item xs={3} className="item">
+                  <Grid size={3} className="item">
                     <TextInput
                       module='contribution'
                       label='contribution.familySummaries.lastName'
@@ -155,7 +155,7 @@ class ContributionMasterPanel extends FormPanel {
                       value={edited.policy.family?.headInsuree?.lastName}
                     />
                   </Grid>
-                  <Grid item xs={3} className="item">
+                  <Grid size={3} className="item">
                     <TextInput
                       module='contribution'
                       label='contribution.familySummaries.otherNames'
@@ -163,7 +163,7 @@ class ContributionMasterPanel extends FormPanel {
                       value={edited.policy.family?.headInsuree?.otherNames}
                     />
                   </Grid>
-                  <Grid item xs={3} className="item">
+                  <Grid size={3} className="item">
                     <PublishedComponent
                       pubRef='core.DatePicker'
                       value={edited.policy.family?.headInsuree?.dob}
@@ -176,7 +176,7 @@ class ContributionMasterPanel extends FormPanel {
               )}
             </>
           )}
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef='core.DatePicker'
               value={edited?.payDate}
@@ -187,7 +187,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(payDate) => this.updateAttribute('payDate', payDate)}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef='contribution.PremiumPaymentTypePicker'
               withNull={false}
@@ -199,7 +199,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(payType) => this.updateAttribute('payType', payType)}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef='payer.PayerPicker'
               withNull={false}
@@ -211,7 +211,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(payer) => this.updateAttribute('payer', payer)}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <ValidatedTextInput
               action={validateReceipt}
               clearAction={clearReceiptValidation}
@@ -236,7 +236,7 @@ class ContributionMasterPanel extends FormPanel {
               value={edited?.receipt ?? ''}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <AmountInput
               module='contribution'
               label='contribution.amount'
@@ -263,7 +263,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(c) => this.updateAttribute('amount', c)}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <AmountInput
               module='policy'
               label='Policy.sumPremiums'
@@ -272,7 +272,7 @@ class ContributionMasterPanel extends FormPanel {
               displayZero={true}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <AmountInput
               name='balance'
               module='policy'
@@ -298,6 +298,9 @@ const mapStateToProps = (store) => ({
   contributionTotalCount: store.contribution.policiesPremiumsPageInfo?.totalCount ?? 0,
 });
 
+export { ContributionMasterPanel };
+
+export { StyledGrid };
 export default withModulesManager(
   withHistory(
     injectIntl(

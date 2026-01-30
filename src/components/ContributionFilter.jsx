@@ -4,6 +4,7 @@ import _debounce from "lodash/debounce";
 
 import { Grid, Checkbox, FormControlLabel } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
+import { GRID_RESPONSIVE_STANDARD, GRID_RESPONSIVE_SMALL, GRID_RESPONSIVE_LARGE, GRID_RESPONSIVE_FULL, GRID_RESPONSIVE_HALF } from "@openimis/fe-core";
 
 import {
   withModulesManager,
@@ -63,7 +64,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.location"
             field={
-              <Grid item xs={12}>
+              <Grid size={GRID_RESPONSIVE_FULL}>
                 <PublishedComponent
                   pubRef="location.DetailedLocationFilter"
                   withNull={true}
@@ -78,9 +79,9 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.payDate"
             field={
-              <Grid item xs={4}>
+              <Grid size={GRID_RESPONSIVE_STANDARD}>
                 <Grid container>
-                  <Grid item xs={6} className="item">
+                  <Grid size={GRID_RESPONSIVE_HALF} className="item">
                     <PublishedComponent
                       pubRef="core.DatePicker"
                       value={this._filterValue("payDateFrom")}
@@ -97,7 +98,7 @@ class ContributionFilter extends Component {
                       }
                     />
                   </Grid>
-                  <Grid item xs={6} className="item">
+                  <Grid size={GRID_RESPONSIVE_HALF} className="item">
                     <PublishedComponent
                       pubRef="core.DatePicker"
                       value={this._filterValue("payDateTo")}
@@ -122,7 +123,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.payer"
             field={
-              <Grid item xs={4} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <PublishedComponent
                   pubRef="payer.PayerPicker"
                   withNull={true}
@@ -146,7 +147,7 @@ class ContributionFilter extends Component {
               id="ContributionFilter.amountUnder"
               key={a}
               field={
-                <Grid item xs={2} className="item">
+                <Grid size={GRID_RESPONSIVE_SMALL} className="item">
                   <AmountInput
                     module="contribution"
                     label={`contribution.${a}`}
@@ -171,7 +172,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.payType"
             field={
-              <Grid item xs={4} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <PublishedComponent
                   pubRef="contribution.PremiumPaymentTypePicker"
                   withNull={true}
@@ -193,7 +194,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="contribution.category"
             field={
-              <Grid item xs={4} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <PublishedComponent
                   pubRef="contribution.PremiumCategoryPicker"
                   withNull={true}
@@ -215,7 +216,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.receipt"
             field={
-              <Grid item xs={4} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <TextInput
                   module="contribution"
                   label="contribution.receipt"
@@ -241,7 +242,7 @@ class ContributionFilter extends Component {
             module="contribution"
             id="ContributionFilter.showHistory"
             field={
-              <Grid item xs={2} className="item">
+              <Grid size={GRID_RESPONSIVE_SMALL} className="item">
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -266,6 +267,9 @@ class ContributionFilter extends Component {
   }
 }
 
+export { ContributionFilter };
+
+export { StyledSection };
 export default withModulesManager(
   injectIntl(ContributionFilter)
 );

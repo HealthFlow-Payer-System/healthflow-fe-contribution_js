@@ -136,4 +136,5 @@ const SaveContributionDialog = ({
     );
 }
 
+export { StyledButton };
 export default injectIntl(SaveContributionDialog);

@@ -248,4 +248,7 @@ const mapDispatchToProps = dispatch => {
         dispatch);
 };
 
+export { ContributionSearcher };
+
+export { FAMILY_SEARCHER_CONTRIBUTION_KEY };
 export default withModulesManager(connect(mapStateToProps, mapDispatchToProps)(injectIntl(ContributionSearcher)));

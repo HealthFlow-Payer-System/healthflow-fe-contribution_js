@@ -43,10 +43,6 @@ class ContributionsPage extends Component {
     if (module !== moduleName) this.props.clearCurrentPaginationPage();
   };
 
-    onDoubleClick = (c, newTab = false) => {
-        historyPush(this.props.modulesManager, this.props.history, "contribution.contributionOverview", [c.uuid], newTab)
-    }
-
     render() {
         return (
             <StyledDiv className="page">
@@ -72,6 +68,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ clearCurrentPaginationPage }, dispatch);
 
+export { ContributionsPage };
+
+export { StyledDiv };
 export default injectIntl(
   withModulesManager(
     withHistory(

@@ -381,6 +381,9 @@ const mapDispatchToProps = (dispatch) => {
   );
 };
 
+export { ContributionForm };
+
+export { StyledDiv };
 export default withHistory(
   withModulesManager(
     connect(
