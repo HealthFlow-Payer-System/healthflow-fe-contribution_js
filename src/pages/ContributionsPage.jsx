@@ -14,8 +14,8 @@ import {
 import ContributionSearcher from "../components/ContributionSearcher";
 
 const StyledDiv = styled("div")(({ theme }) => ({
-  ...theme.page,
-  '& .fab': theme.fab,
+  ...theme?.page ?? {},
+  '& .fab': theme?.fab ?? {},
 }));
 
 class ContributionsPage extends Component {

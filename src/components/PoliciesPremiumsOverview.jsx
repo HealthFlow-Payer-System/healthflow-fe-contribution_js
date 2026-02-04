@@ -42,11 +42,11 @@ import {
 import DeleteContributionDialog from "./DeleteContributionDialog";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  ...theme.paper.paper,
-  '& .paperHeader': theme.paper.header,
-  '& .paperHeaderAction': theme.paper.action,
-  '& .tableTitle': theme.table.title,
-  '& .fab': theme.fab,
+  ...theme?.paper?.paper ?? {},
+  '& .paperHeader': theme?.paper?.header ?? {},
+  '& .paperHeaderAction': theme?.paper?.action ?? {},
+  '& .tableTitle': theme?.table?.title ?? {},
+  '& .fab': theme?.fab ?? {},
   '& .disabled': {
     opacity: 0.4,
   }

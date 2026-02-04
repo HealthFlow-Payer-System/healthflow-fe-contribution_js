@@ -21,11 +21,11 @@ const StyledSection = styled("section")(({ theme }) => ({
     padding: 0,
   },
   '& .item': {
-    padding: theme.spacing(1),
+    padding: theme?.spacing?.(1),
   },
-  '& .dialogTitle': theme.dialog.title,
-  '& .dialogContent': theme.dialog.content,
-  '& .paperDivider': theme.paper.divider,
+  '& .dialogTitle': theme?.dialog?.title ?? {},
+  '& .dialogContent': theme?.dialog?.content ?? {},
+  '& .paperDivider': theme?.paper?.divider ?? {},
 }));
 
 class ContributionFilter extends Component {

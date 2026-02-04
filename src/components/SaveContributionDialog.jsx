@@ -14,8 +14,8 @@ import {
 import { FormattedMessage } from "@openimis/fe-core";
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  '& .primaryButton': theme.dialog.primaryButton,
-  '& .secondaryButton': theme.dialog.secondaryButton,
+  '& .primaryButton': theme?.dialog?.primaryButton ?? {},
+  '& .secondaryButton': theme?.dialog?.secondaryButton ?? {},
 }));
 
 const SaveContributionDialog = ({

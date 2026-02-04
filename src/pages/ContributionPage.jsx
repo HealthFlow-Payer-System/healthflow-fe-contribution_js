@@ -11,7 +11,7 @@ import { createContribution, updateContribution } from "../actions";
 import { RIGHT_CONTRIBUTION_EDIT } from "../constants";
 
 const StyledDiv = styled("div")(({ theme }) => ({
-  ...theme.page,
+  ...theme?.page ?? {},
 }));
 
 class ContributionPage extends Component {

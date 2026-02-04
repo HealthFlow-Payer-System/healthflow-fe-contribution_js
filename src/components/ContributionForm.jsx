@@ -31,7 +31,7 @@ import ContributionMasterPanel from "./ContributionMasterPanel";
 import SaveContributionDialog from "./SaveContributionDialog";
 
 const StyledDiv = styled("div")(({ theme }) => ({
-  '&.lockedPage': theme.page.locked,
+  '&.lockedPage': theme?.page?.locked ?? {},
 }));
 
 const CONTRIBUTION_OVERVIEW_MUTATIONS_KEY =
