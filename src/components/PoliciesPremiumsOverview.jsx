@@ -293,7 +293,7 @@ class PoliciesPremiumsOverview extends PagedDataHandler {
                             </Typography>
                         </Grid>
                         <Grid size={4}>
-                            <Grid container direction="row" justify="flex-end">
+                            <Grid container direction="row" justifyContent="flex-end">
                                 {actions.map((a, idx) => {
                                     return (
                                         <Grid key={`form-action-${idx}`} className="paperHeaderAction">

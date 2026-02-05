@@ -16,6 +16,8 @@ import {
   formatMessage,
   FormPanel,
   WarningBox,
+  GRID_RESPONSIVE_STANDARD,
+  GRID_RESPONSIVE_FULL,
 } from "@openimis/fe-core";
 import {
   validateReceipt,
@@ -96,11 +98,11 @@ class ContributionMasterPanel extends FormPanel {
       edited?.policy?.otherPremiums -
       (edited?.amount || 0);
       return (
-        <StyledGrid container className="item">
+        <StyledGrid container className="item" spacing={2}>
           {!!edited && !!edited.policy && !!edited.policy.value && (
             <>
               {this.renderWarning()}
-              <Grid size={3} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <TextInput
                   module='contribution'
                   label='contribution.policy.name'
@@ -110,7 +112,7 @@ class ContributionMasterPanel extends FormPanel {
                   }
                 />
               </Grid>
-              <Grid size={3} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <AmountInput
                   module='contribution'
                   label='contribution.policy.value'
@@ -119,7 +121,7 @@ class ContributionMasterPanel extends FormPanel {
                   value={edited.policy.value || ''}
                 />
               </Grid>
-              <Grid size={3} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <PublishedComponent
                   pubRef='core.DatePicker'
                   value={edited.policy.startDate || ''}
@@ -128,7 +130,7 @@ class ContributionMasterPanel extends FormPanel {
                   readOnly={true}
                 />
               </Grid>
-              <Grid size={3} className="item">
+              <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                 <PublishedComponent
                   pubRef='core.DatePicker'
                   value={edited.policy.expiryDate || ''}
@@ -139,7 +141,7 @@ class ContributionMasterPanel extends FormPanel {
               </Grid>
               {edited.policy?.family?.uuid && (
                 <>
-                  <Grid size={3} className="item">
+                  <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                     <TextInput
                       module='contribution'
                       label='contribution.familySummaries.insuranceNo'
@@ -147,7 +149,7 @@ class ContributionMasterPanel extends FormPanel {
                       value={edited.policy.family?.headInsuree?.chfId}
                     />
                   </Grid>
-                  <Grid size={3} className="item">
+                  <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                     <TextInput
                       module='contribution'
                       label='contribution.familySummaries.lastName'
@@ -155,7 +157,7 @@ class ContributionMasterPanel extends FormPanel {
                       value={edited.policy.family?.headInsuree?.lastName}
                     />
                   </Grid>
-                  <Grid size={3} className="item">
+                  <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                     <TextInput
                       module='contribution'
                       label='contribution.familySummaries.otherNames'
@@ -163,7 +165,7 @@ class ContributionMasterPanel extends FormPanel {
                       value={edited.policy.family?.headInsuree?.otherNames}
                     />
                   </Grid>
-                  <Grid size={3} className="item">
+                  <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
                     <PublishedComponent
                       pubRef='core.DatePicker'
                       value={edited.policy.family?.headInsuree?.dob}
@@ -176,7 +178,7 @@ class ContributionMasterPanel extends FormPanel {
               )}
             </>
           )}
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef='core.DatePicker'
               value={edited?.payDate}
@@ -187,7 +189,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(payDate) => this.updateAttribute('payDate', payDate)}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef='contribution.PremiumPaymentTypePicker'
               withNull={false}
@@ -199,7 +201,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(payType) => this.updateAttribute('payType', payType)}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef='payer.PayerPicker'
               withNull={false}
@@ -211,7 +213,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(payer) => this.updateAttribute('payer', payer)}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <ValidatedTextInput
               action={validateReceipt}
               clearAction={clearReceiptValidation}
@@ -236,7 +238,7 @@ class ContributionMasterPanel extends FormPanel {
               value={edited?.receipt ?? ''}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <AmountInput
               module='contribution'
               label='contribution.amount'
@@ -263,7 +265,7 @@ class ContributionMasterPanel extends FormPanel {
               onChange={(c) => this.updateAttribute('amount', c)}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <AmountInput
               module='policy'
               label='Policy.sumPremiums'
@@ -272,7 +274,7 @@ class ContributionMasterPanel extends FormPanel {
               displayZero={true}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <AmountInput
               name='balance'
               module='policy'

@@ -23,6 +23,10 @@ const StyledSection = styled("section")(({ theme }) => ({
   '& .item': {
     padding: theme?.spacing?.(1),
   },
+  '& .locationWrapper': {
+    paddingLeft: theme?.spacing ? theme.spacing(1) : 8,
+    paddingRight: theme?.spacing ? theme.spacing(1) : 8,
+  },
   '& .dialogTitle': theme?.dialog?.title ?? {},
   '& .dialogContent': theme?.dialog?.content ?? {},
   '& .paperDivider': theme?.paper?.divider ?? {},
@@ -59,19 +63,22 @@ class ContributionFilter extends Component {
     const { filters, onChangeFilters, intl } = this.props;
     return (
       <StyledSection className="form">
-        <Grid container>
+        <Grid container spacing={2}>
           <ControlledField
             module="contribution"
             id="ContributionFilter.location"
             field={
               <Grid size={GRID_RESPONSIVE_FULL}>
-                <PublishedComponent
-                  pubRef="location.DetailedLocationFilter"
-                  withNull={true}
-                  filters={filters}
-                  onChangeFilters={onChangeFilters}
-                  anchor="parentLocation"
-                />
+                <div className="locationWrapper">
+                  <PublishedComponent
+                    pubRef="location.DetailedLocationFilter"
+                    withNull={true}
+                    filters={filters}
+                    onChangeFilters={onChangeFilters}
+                    anchor="parentLocation"
+                    split
+                  />
+                </div>
               </Grid>
             }
           />
@@ -81,7 +88,7 @@ class ContributionFilter extends Component {
             field={
               <Grid size={GRID_RESPONSIVE_STANDARD}>
                 <Grid container>
-                  <Grid size={GRID_RESPONSIVE_HALF} className="item">
+                  <Grid size={6} className="item">
                     <PublishedComponent
                       pubRef="core.DatePicker"
                       value={this._filterValue("payDateFrom")}
@@ -98,7 +105,7 @@ class ContributionFilter extends Component {
                       }
                     />
                   </Grid>
-                  <Grid size={GRID_RESPONSIVE_HALF} className="item">
+                  <Grid size={6} className="item">
                     <PublishedComponent
                       pubRef="core.DatePicker"
                       value={this._filterValue("payDateTo")}
@@ -237,7 +244,7 @@ class ContributionFilter extends Component {
           />
         </Grid>
 
-        <Grid container justify="flex-end">
+        <Grid container justifyContent="flex-end">
           <ControlledField
             module="contribution"
             id="ContributionFilter.showHistory"
