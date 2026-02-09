@@ -29,11 +29,6 @@ const StyledSection = styled('section')(({ theme }) => ({
   '& .item': {
     padding: theme?.spacing?.(1),
   },
-  '& .locationWrapper': {
-    paddingLeft: theme?.spacing ? theme.spacing(1) : 8,
-    paddingRight: theme?.spacing ? theme.spacing(1) : 8,
-    paddingTop: theme?.spacing ? theme.spacing(0.5) : 4,
-  },
   '& .dialogTitle': theme?.dialog?.title ?? {},
   '& .dialogContent': theme?.dialog?.content ?? {},
   '& .paperDivider': theme?.paper?.divider ?? {},
@@ -70,22 +65,20 @@ class ContributionFilter extends Component {
     const { filters, onChangeFilters, intl } = this.props;
     return (
       <StyledSection className='form'>
-        <Grid container spacing={2}>
+        <Grid container>
           <ControlledField
             module='contribution'
             id='ContributionFilter.location'
             field={
               <Grid size={GRID_RESPONSIVE_FULL}>
-                <div className='locationWrapper'>
-                  <PublishedComponent
-                    pubRef='location.DetailedLocationFilter'
-                    withNull={true}
-                    filters={filters}
-                    onChangeFilters={onChangeFilters}
-                    anchor='parentLocation'
-                    split
-                  />
-                </div>
+                <PublishedComponent
+                  pubRef='location.DetailedLocationFilter'
+                  withNull={true}
+                  filters={filters}
+                  onChangeFilters={onChangeFilters}
+                  anchor='parentLocation'
+                  split
+                />
               </Grid>
             }
           />
