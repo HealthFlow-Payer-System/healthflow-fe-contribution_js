@@ -156,7 +156,7 @@ class ContributionFilter extends Component {
               id='ContributionFilter.amountUnder'
               key={a}
               field={
-                <Grid size={GRID_RESPONSIVE_SMALL} className='item'>
+                <Grid size={GRID_RESPONSIVE_STANDARD} className='item'>
                   <AmountInput
                     module='contribution'
                     label={`contribution.${a}`}
@@ -244,9 +244,6 @@ class ContributionFilter extends Component {
               </Grid>
             }
           />
-        </Grid>
-
-        <Grid container justifyContent='flex-end'>
           <ControlledField
             module='contribution'
             id='ContributionFilter.showHistory'
