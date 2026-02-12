@@ -265,7 +265,9 @@ class PoliciesPremiumsOverview extends PagedDataHandler {
         const canAdd = rights.includes(RIGHT_CONTRIBUTION_ADD);
         let actions = [
             {
-                button: <IconButton onClick={this.query}><ReplayIcon /></IconButton>,
+                button: <Button onClick={this.query} startIcon={<ReplayIcon />}>
+                    {formatMessage(intl, "contribution", "reload.tooltip")}
+                </Button>,
                 tooltip: formatMessage(intl, "contribution", "reload.tooltip")
             }
         ];
