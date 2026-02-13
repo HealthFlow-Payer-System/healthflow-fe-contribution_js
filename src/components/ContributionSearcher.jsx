@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { injectIntl } from 'react-intl';
-import {  IconButton, Tooltip } from "@mui/material";
+import {  Button, Tooltip } from "@mui/material";
 import {
    Tab as TabIcon, Delete as DeleteIcon
 } from '@mui/icons-material';
@@ -154,7 +154,7 @@ class ContributionSearcher extends Component {
         const formatters =  [
             c => formatDateFromISO(this.props.modulesManager, this.props.intl, c.payDate),
             c => c.payer?.name ?? "",
-            c => formatAmount(this.props.intl, c.amount),
+            c => formatAmount(this.props.modulesManager, this.props.intl, c.amount),
             c => <PublishedComponent
                 readOnly={true}
                 pubRef="contribution.PremiumPaymentTypePicker" withLabel={false} value={c.payType}
