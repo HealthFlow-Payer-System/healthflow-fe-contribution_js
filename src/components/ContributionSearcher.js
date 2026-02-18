@@ -154,7 +154,7 @@ class ContributionSearcher extends Component {
         const formatters =  [
             c => formatDateFromISO(this.props.modulesManager, this.props.intl, c.payDate),
             c => c.payer?.name ?? "",
-            c => formatAmount(this.props.intl, c.amount),
+            c => formatAmount(this.props.modulesManager, this.props.intl, c.amount),
             c => <PublishedComponent
                 readOnly={true}
                 pubRef="contribution.PremiumPaymentTypePicker" withLabel={false} value={c.payType}
