@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Edit as EditIcon } from "@mui/icons-material";
+import { GetIconComponent } from "@openimis/fe-core";
+const EditIcon = GetIconComponent("Edit")
 import { historyPush, withModulesManager, withHistory } from "@openimis/fe-core";
 import ContributionPage from "./ContributionPage";
 

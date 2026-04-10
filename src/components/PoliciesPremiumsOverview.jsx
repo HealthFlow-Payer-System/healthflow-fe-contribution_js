@@ -6,11 +6,6 @@ import _ from "lodash";
 
 import { Paper, IconButton, Grid, Divider, Typography, Tooltip } from "@mui/material";
 import { useTheme, styled } from "@mui/material/styles";
-import ReplayIcon from "@mui/icons-material/Replay"
-import {
-    Add as AddIcon,
-    Delete as DeleteIcon,
-} from '@mui/icons-material';
 
 import {
     formatMessage,
@@ -27,6 +22,7 @@ import {
     journalize,
     historyPush,
     coreAlert,
+    GetIconComponent,
 } from "@openimis/fe-core";
 import {
     fetchPoliciesPremiums,
@@ -40,7 +36,9 @@ import {
     FAMILY_TYPE_POLYGAMY_CODE,
 } from "../constants";
 import DeleteContributionDialog from "./DeleteContributionDialog";
-
+const AddIcon = GetIconComponent("Add")
+const DeleteIcon = GetIconComponent("Delete")
+const ReplayIcon = GetIconComponent("Replay")
 const StyledPaper = styled(Paper)(({ theme }) => ({
   ...theme?.paper?.paper ?? {},
   '& .paperHeader': theme?.paper?.header ?? {},

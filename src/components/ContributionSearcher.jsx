@@ -4,9 +4,10 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { injectIntl } from 'react-intl';
 import {  Button, Tooltip } from "@mui/material";
-import {
-   Tab as TabIcon, Delete as DeleteIcon
-} from '@mui/icons-material';
+import { GetIconComponent } from "@openimis/fe-core";
+const TabIcon = GetIconComponent("Tab")
+const DeleteIcon = GetIconComponent("Delete")
+
 import ContributionFilter from './ContributionFilter';
 import {
     withModulesManager, formatMessageWithValues, formatDateFromISO, formatMessage,

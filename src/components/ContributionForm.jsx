@@ -3,8 +3,10 @@ import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { useTheme, styled } from "@mui/material/styles";
-import ReplayIcon from "@mui/icons-material/Replay";
-import People from "@mui/icons-material/People";
+import { GetIconComponent } from "@openimis/fe-core";
+
+const ReplayIcon = GetIconComponent("Replay")
+const People = GetIconComponent("People")
 
 import {
   formatMessageWithValues,

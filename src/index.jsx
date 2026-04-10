@@ -1,5 +1,6 @@
 import React from "react";
-import { MonetizationOn } from "@mui/icons-material";
+import { GetIconComponent } from "@openimis/fe-core";
+const MonetizationOn = GetIconComponent("MonetizationOn")
 import { FormattedMessage, decodeId } from "@openimis/fe-core";
 import ContributionsPage from "./pages/ContributionsPage";
 import ContributionPage from "./pages/ContributionPage";
