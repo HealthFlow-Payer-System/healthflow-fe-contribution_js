@@ -156,10 +156,7 @@ class ContributionSearcher extends Component {
             c => formatDateFromISO(this.props.modulesManager, this.props.intl, c.payDate),
             c => c.payer?.name ?? "",
             c => formatAmount(this.props.modulesManager, this.props.intl, c.amount),
-            c => <PublishedComponent
-                readOnly={true}
-                pubRef="contribution.PremiumPaymentTypePicker" withLabel={false} value={c.payType}
-            />,
+            c => formatMessage(this.props.intl, "contribution", `payType.${c.payType}`),
             c => c.receipt,
             c => formatMessage(this.props.intl, "contribution", `contribution.category.${!!c.isPhotoFee ? "photoFee" : "contribution"}`),
 
