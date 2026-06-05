@@ -11,7 +11,7 @@ const DeleteIcon = GetIconComponent("Delete")
 import ContributionFilter from './ContributionFilter';
 import {
     withModulesManager, formatMessageWithValues, formatDateFromISO, formatMessage,
-    Searcher, PublishedComponent, formatAmount, journalize,
+    Searcher, formatAmount, journalize,
 } from "@openimis/fe-core";
 
 import { fetchContributionsSummaries, deleteContribution } from "../actions";
