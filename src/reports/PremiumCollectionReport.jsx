@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import { PublishedComponent, useModulesManager, useTranslations } from "@openimis/fe-core";
 import React from "react";
 
@@ -9,7 +9,7 @@ const PremiumCollectionReport = (props) => {
 
   return (
     <Grid container direction="column" spacing={1}>
-      <Grid item>
+      <Grid>
         <PublishedComponent
           pubRef="core.DatePicker"
           value={values.dateStart}
@@ -19,7 +19,7 @@ const PremiumCollectionReport = (props) => {
           onChange={(dateStart) => setValues({ ...values, dateStart })}
         />
       </Grid>
-      <Grid item>
+      <Grid>
         <PublishedComponent
           pubRef="core.DatePicker"
           value={values.dateEnd}
@@ -29,7 +29,7 @@ const PremiumCollectionReport = (props) => {
           onChange={(dateEnd) => setValues({ ...values, dateEnd })}
         />
       </Grid>
-      <Grid item>
+      <Grid>
         <PublishedComponent
           pubRef="location.LocationPicker"
           onChange={(region) =>
@@ -43,7 +43,7 @@ const PremiumCollectionReport = (props) => {
           label={formatMessage("PremiumCollectionReport.region")}
         />
       </Grid>
-      <Grid item>
+      <Grid>
         <PublishedComponent
           pubRef="location.LocationPicker"
           onChange={(district) =>
@@ -57,7 +57,7 @@ const PremiumCollectionReport = (props) => {
           label={formatMessage("PremiumCollectionReport.district")}
         />
       </Grid>
-      <Grid item>
+      <Grid>
         <PublishedComponent
           pubRef="product.ProductPicker"
           onChange={(product) => setValues({ ...values, product })}
@@ -66,7 +66,7 @@ const PremiumCollectionReport = (props) => {
           label={formatMessage("PremiumCollectionReport.product")}
         />
       </Grid>
-      <Grid item>
+      <Grid>
         <PublishedComponent
           pubRef="contribution.PremiumPaymentTypePicker"
           onChange={(paymentType) => setValues({ ...values, paymentType })}

@@ -1,5 +1,6 @@
 import React from "react";
-import { MonetizationOn } from "@material-ui/icons";
+import { GetIconComponent } from "@openimis/fe-core";
+const MonetizationOn = GetIconComponent("MonetizationOn")
 import { FormattedMessage, decodeId } from "@openimis/fe-core";
 import ContributionsPage from "./pages/ContributionsPage";
 import ContributionPage from "./pages/ContributionPage";
@@ -97,17 +98,13 @@ const DEFAULT_CONFIG = {
     { key: "contribution.contributionOverview", ref: ROUTE_CONTRIBUTION_CONTRIBUTION_OVERVIEW },
   ],
   "core.Router": [
-    { path: ROUTE_CONTRIBUTION_CONTRIBUTIONS, component: ContributionsPage },
-    { path: ROUTE_CONTRIBUTION_CONTRIBUTION + "/:policy_uuid", component: ContributionPage },
-    { path: ROUTE_CONTRIBUTION_CONTRIBUTION_OVERVIEW + "/:contribution_uuid", component: ContributionOverviewPage },
+    { path: ROUTE_CONTRIBUTION_CONTRIBUTIONS, text: "contribution.menu.contributions", id: 'insuree.contribution',component: ContributionsPage, rights: [RIGHT_CONTRIBUTION], icon: "MonetizationOn" },
+    { path: ROUTE_CONTRIBUTION_CONTRIBUTION + "/:policy_uuid", component: ContributionPage, rights: [RIGHT_CONTRIBUTION], icon: "MonetizationOn" },
+    { path: ROUTE_CONTRIBUTION_CONTRIBUTION_OVERVIEW + "/:contribution_uuid", component: ContributionOverviewPage, rights: [RIGHT_CONTRIBUTION], icon: "MonetizationOn" },
   ],
   "insuree.MainMenu": [
     {
-      text: <FormattedMessage module="contribution" id="menu.contributions" />,
-      icon: <MonetizationOn />,
-      route: "/" + ROUTE_CONTRIBUTION_CONTRIBUTIONS,
-      filter: rights => rights.includes(RIGHT_CONTRIBUTION),
-      id: 'insuree.contribution'
+      route:  ROUTE_CONTRIBUTION_CONTRIBUTIONS,
     }
   ],
   "insuree.FamilyOverview.panels": [PoliciesPremiumsOverview],

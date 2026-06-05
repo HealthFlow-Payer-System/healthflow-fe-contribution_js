@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Edit as EditIcon } from "@material-ui/icons";
+import { GetIconComponent } from "@openimis/fe-core";
+const EditIcon = GetIconComponent("Edit")
 import { historyPush, withModulesManager, withHistory } from "@openimis/fe-core";
 import ContributionPage from "./ContributionPage";
 
@@ -20,5 +21,7 @@ class ContributionOverviewPage extends Component {
 const mapStateToProps = (state, props) => ({
     contribution_uuid: props.match.params.contribution_uuid,
 })
+
+export { ContributionOverviewPage };
 
 export default withHistory(withModulesManager(connect(mapStateToProps)(ContributionOverviewPage)));

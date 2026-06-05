@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { useTheme, styled } from "@mui/material/styles";
 
 import {
   historyPush,
@@ -13,10 +13,10 @@ import {
 } from "@openimis/fe-core";
 import ContributionSearcher from "../components/ContributionSearcher";
 
-const styles = (theme) => ({
-  page: theme.page,
-  fab: theme.fab,
-});
+const StyledDiv = styled("div")(({ theme }) => ({
+  ...theme?.page ?? {},
+  '& .fab': theme?.fab ?? {},
+}));
 
 class ContributionsPage extends Component {
   onDoubleClick = (c, newTab = false) => {
@@ -43,20 +43,15 @@ class ContributionsPage extends Component {
     if (module !== moduleName) this.props.clearCurrentPaginationPage();
   };
 
-    onDoubleClick = (c, newTab = false) => {
-        historyPush(this.props.modulesManager, this.props.history, "contribution.contributionOverview", [c.uuid], newTab)
-    }
-
     render() {
-        const { classes } = this.props;
         return (
-            <div className={classes.page}>
+            <StyledDiv className="page">
                 <ContributionSearcher
                     cacheFiltersKey="contributionsPageFiltersCache"
                     onDoubleClick={this.onDoubleClick}
                     defaultFilters = {this.state.defaultFilters}
                 />
-            </div>
+            </StyledDiv>
         )
     }
 
@@ -73,13 +68,16 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ clearCurrentPaginationPage }, dispatch);
 
+export { ContributionsPage };
+
+export { StyledDiv };
 export default injectIntl(
   withModulesManager(
     withHistory(
       connect(
         mapStateToProps,
         mapDispatchToProps
-      )(withTheme(withStyles(styles)(ContributionsPage)))
+      )(ContributionsPage)
     )
   )
 );

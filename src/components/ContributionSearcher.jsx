@@ -3,14 +3,15 @@ import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { injectIntl } from 'react-intl';
-import {  Button, Tooltip } from "@material-ui/core";
-import {
-   Tab as TabIcon, Delete as DeleteIcon
-} from '@material-ui/icons';
+import {  Button, Tooltip } from "@mui/material";
+import { GetIconComponent } from "@openimis/fe-core";
+const TabIcon = GetIconComponent("Tab")
+const DeleteIcon = GetIconComponent("Delete")
+
 import ContributionFilter from './ContributionFilter';
 import {
     withModulesManager, formatMessageWithValues, formatDateFromISO, formatMessage,
-    Searcher, PublishedComponent, formatAmount, journalize,
+    Searcher, formatAmount, journalize,
 } from "@openimis/fe-core";
 
 import { fetchContributionsSummaries, deleteContribution } from "../actions";
@@ -155,10 +156,7 @@ class ContributionSearcher extends Component {
             c => formatDateFromISO(this.props.modulesManager, this.props.intl, c.payDate),
             c => c.payer?.name ?? "",
             c => formatAmount(this.props.modulesManager, this.props.intl, c.amount),
-            c => <PublishedComponent
-                readOnly={true}
-                pubRef="contribution.PremiumPaymentTypePicker" withLabel={false} value={c.payType}
-            />,
+            c => formatMessage(this.props.intl, "contribution", `payType.${c.payType}`),
             c => c.receipt,
             c => formatMessage(this.props.intl, "contribution", `contribution.category.${!!c.isPhotoFee ? "photoFee" : "contribution"}`),
 
@@ -248,4 +246,7 @@ const mapDispatchToProps = dispatch => {
         dispatch);
 };
 
+export { ContributionSearcher };
+
+export { FAMILY_SEARCHER_CONTRIBUTION_KEY };
 export default withModulesManager(connect(mapStateToProps, mapDispatchToProps)(injectIntl(ContributionSearcher)));
