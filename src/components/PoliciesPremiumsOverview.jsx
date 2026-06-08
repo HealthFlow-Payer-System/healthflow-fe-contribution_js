@@ -214,7 +214,6 @@ class PoliciesPremiumsOverview extends PagedDataHandler {
 
     deleteContribution = () => {
         const { deleteContribution } = this.state;
-        console.log(deleteContribution);
         this.props.selectPremium(null);
         this.setState(
             { deleteContribution: null },
