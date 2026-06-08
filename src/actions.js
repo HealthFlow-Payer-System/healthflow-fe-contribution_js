@@ -201,7 +201,6 @@ export function deleteContribution(mm, contribution, clientMutationLabel) {
     `uuids: ["${contribution.uuid}"]`,
     clientMutationLabel
   );
-  contribution.clientMutationId = mutation.clientMutationId;
   var requestedDateTime = new Date();
   return graphql(
     mutation.payload,
